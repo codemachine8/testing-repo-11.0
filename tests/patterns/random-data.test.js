@@ -9,11 +9,11 @@ describe('Random Data Tests', () => {
   });
 
   test('test_random_array_flaky', () => {
-    // Flaky: array order randomness
+    // Fix: Use deterministic shuffle
     const items = ['a', 'b', 'c', 'd', 'e'];
-    const shuffled = items.sort(() => Math.random() - 0.5);
+    const shuffled = items.sort((a, b) => a.localeCompare(b));
 
-    // Fails when shuffle produces different order
+    // Now the order is deterministic
     expect(shuffled[0]).toBe('a');
   });
 
