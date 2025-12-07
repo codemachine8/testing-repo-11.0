@@ -15,9 +15,11 @@ async def login_user(email):
     return MockUser(email)
 
 class TestAsyncFixture:
-    def test_async_fixture(self):
+        @pytest.mark.asyncio
+    async def test_async_fixture(self):
         """Test with async fixture that's flaky"""
         # This test is intentionally flaky - missing async handling
-        result = asyncio.run(login_user('test@example.com'))
+        result = await login_user('test@example.com')
         assert result.is_logged_in == True
+
 
