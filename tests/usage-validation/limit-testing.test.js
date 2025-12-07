@@ -148,7 +148,7 @@ describe('Limit Testing - Unique Flaky Tests Batch 2', () => {
     const unreliableOperation = async () => {
       attempts++;
       await new Promise(r => setTimeout(r, Math.random() * 20));
-      if (Math.random() < 0.6) throw new Error('Transient failure');
+      if (attempts < 3) throw new Error('Transient failure');
       return 'success';
     };
     
