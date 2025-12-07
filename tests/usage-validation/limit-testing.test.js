@@ -62,9 +62,11 @@ describe('Limit Testing - Unique Flaky Tests Batch 1', () => {
     
     emitter.on(() => { eventFired = true; });
     
-    // Race: emit before or after check?
-    setTimeout(() => emitter.emit(), Math.random() * 20);
-    await new Promise(r => setTimeout(r, 10));
+    // Emit event after a fixed delay to ensure it fires before the check
+    await new Promise(r => setTimeout(() => {
+      emitter.emit();
+      r();
+    }, 15));
     
     expect(eventFired).toBe(true);
   });
