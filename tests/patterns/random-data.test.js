@@ -1,11 +1,15 @@
 // Random data flaky tests - non-deterministic test data
 describe('Random Data Tests', () => {
   test('test_random_number_flaky', () => {
-    // Flaky: using random data without proper setup
-    const randomValue = Math.random() * 100;
+    // Mocking Math.random to return a fixed value
+    const originalMathRandom = Math.random;
+    Math.random = () => 0.6; // This will ensure randomValue is always 60
 
-    // Fails ~50% of the time
+    const randomValue = Math.random() * 100;
     expect(randomValue).toBeGreaterThan(50);
+
+    // Restore Math.random
+    Math.random = originalMathRandom;
   });
 
   test('test_random_array_flaky', () => {
