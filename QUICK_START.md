@@ -13,7 +13,7 @@ NEW FILES:
 ├── tests/
 │   ├── with-deps/              ← Tests with imports (validates dependency tracking)
 │   │   ├── auth-with-deps.test.js
-│   │   ├── api-with-deps.test.js
+│   │   ├── api-with-deps.test.js 
 │   │   └── database-with-deps.test.js
 │   ├── patterns/               ← Common flaky patterns (timing, async, random)
 │   │   ├── timing-sensitive.test.js
